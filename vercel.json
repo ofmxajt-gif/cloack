@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/api/redirect?url=https://onlyfans.com/livvycute"
-    }
-  ]
-}
