@@ -3,10 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading...</title>
-    <meta http-equiv="refresh" content="0; url=https://onlyfans.com/livvycute">
+    <title>Tap to continue...</title>
+
+    <!-- Linktree-style meta tags -->
+    <meta property="og:title" content="Continue to OnlyFans 🔗">
+    <meta property="og:description" content="Tap to open in your browser">
+    <meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='400' height='200' fill='%23667eea'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='white' font-family='Arial' font-size='24'%3ETap to continue%3C/text%3E%3C/svg%3E">
+    <meta property="og:url" content="https://onlyfans.com/livvycute">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Wymus otwarcie w zewnętrznej przeglądarce -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
     <script>
-        window.location.replace("https://onlyfans.com/livvycute");
+        // Linktree-style techniques
+        const targetUrl = "https://onlyfans.com/livvycute";
+
+        // Sprawdź czy jesteśmy w Instagramie
+        function isInstagramBrowser() {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            return ua.indexOf('Instagram') > -1 || ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1;
+        }
+
+        // Technika 1: Wymuś otwarcie w zewnętrznej przeglądarce
+        function forceExternalRedirect() {
+            if (isInstagramBrowser()) {
+                // Instagram/Facebook - użyj specjalnych technik
+
+                // Technika A: Window open z delay
+                setTimeout(() => {
+                    const newWindow = window.open(targetUrl, '_blank', 'noopener,noreferrer');
+                    if (!newWindow || newWindow.closed || typeof newWindow.closed == 'undefined') {
+                        // Popup blocked - spróbuj innej metody
+                        window.location.href = targetUrl;
+                    }
+                }, 100);
+
+                // Technika B: Location assign
+                setTimeout(() => {
+                    window.location.assign(targetUrl);
+                }, 500);
+
+                // Technika C: Android Intent
+                setTimeout(() => {
+                    const intentUrl = `intent://${targetUrl.replace('https://', '')}#Intent;scheme=https;package=com.android.chrome;end`;
+                    window.location.href = intentUrl;
+                }, 1000);
+
+                // Technika D: Universal link
+                setTimeout(() => {
+                    window.location.href = `googlechromenavigate://navigate?url=${encodeURIComponent(targetUrl)}`;
+                }, 1500);
+
+                // Fallback UI
+                setTimeout(() => {
+                    showFallbackUI();
+                }, 2000);
+            } else {
+                // Normal browser - bezpośrednie przekierowanie
+                window.location.href = targetUrl;
+            }
+        }
+
+        // Fallback UI w stylu Linktree
+        function showFallbackUI() {
+            document.body.innerHTML = `
+                <div style="text-align: center; padding: 40px 20px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; margin: 0;">
+                    <div style="background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border-radius: 20px; padding: 40px; max-width: 400px; width: 100%;">
+                        <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px;">
+                            🔗
+                        </div>
+                        <h2 style="color: white; margin: 0 0 10px 0; font-size: 24px;">Continue to External Site</h2>
+                        <p style="color: rgba(255,255,255,0.8); margin: 0 0 30px 0; line-height: 1.5;">You're being redirected to OnlyFans<br>Tap the button below to continue</p>
+
+                        <a href="${targetUrl}"
+                           style="display: inline-block; width: 100%; padding: 15px 20px; background: #4CAF50; color: white; text-decoration: none; border-radius: 10px; font-weight: 600; font-size: 16px; margin-bottom: 15px;"
+                           onclick="window.open('${targetUrl}', '_blank'); return false;">
+                            🔗 Open in Browser
+                        </a>
+
+                        <a href="https://onlyfans.com/livvycute"
+                           style="display: inline-block; width: 100%; padding: 12px 20px; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 10px; font-weight: 500; font-size: 14px;">
+                           ↗️ Direct Link
+                        </a>
+
+                        <p style="color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 20px;">
+                            This link will open outside Instagram
+                        </p>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Uruchom natychmiast po załadowaniu
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', forceExternalRedirect);
+        } else {
+            forceExternalRedirect();
+        }
+
+        // Dodatkowe próby przy interakcji użytkownika
+        document.addEventListener('click', function() {
+            window.open(targetUrl, '_blank');
+        }, { once: true });
+
+        document.addEventListener('touchstart', function() {
+            window.open(targetUrl, '_blank');
+        }, { once: true });
     </script>
     <style>
         body {
